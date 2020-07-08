@@ -13,17 +13,6 @@
     }
     .wrapper {
       width: 1100px;
-      background-color: #fff;
-      margin: 3rem auto;
-    }
-    .border-top {
-      border-top: solid 1px #eee;
-      width: 70%;
-      margin: 0 auto;
-      padding-top: 1.5rem;
-    }
-    .form-group {
-      margin-bottom: 1.5rem;
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -32,56 +21,49 @@
   <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body>
-  <div class="wrapper shadow p-3 mb-5 bg-white rounded">
+  <div class="wrapper bg-white mt-5 mx-auto shadow p-3 mb-5 bg-white rounded">
     {!! Form::open(['route' => 'store']) !!}
       <div class="form-row">
-        <div class="form-group col-sm-6">
-          <label>姓</label>
-            <input type="text" class="form-control" name="familyName" placeholder="姓">
+        <div class="form-group col-sm-6 mb-4">
+          {{ Form::label('familyName', '姓') }}
+          {{ Form::input('text', 'familyName', null, ['class' => 'form-control', 'placeholder' => '姓']) }}
         </div>
-        <div class="form-group col-sm-6">
-            <label>名</label>
-            <input type="text" class="form-control" name="firstName" placeholder="名">
+        <div class="form-group col-sm-6 mb-4">
+          {{ Form::label('firstName', '名') }}
+          {{ Form::input('text', 'firstName', null, ['class' => 'form-control', 'placeholder' => '名']) }}
         </div>
       </div>
-      <div class="form-group">
-        <label>Eメールアドレス</label>
-        <input type="email" class="form-control" name="e-mail" placeholder="Eメールアドレス">
+      <div class="form-group mb-4">
+        {{ Form::label('e-mail', 'Eメールアドレス') }}
+        {{ Form::input('email', 'e-mail', null, ['class' => 'form-control', 'placeholder' => 'Eメールアドレス']) }}
       </div>
       <div class="form-row">
-        <div class="form-group col-sm-6">
-          <label>性別</label>
+        <div class="form-group col-sm-6 mb-4">
+          {{ Form::label('sex', '性別') }}
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="male" value="男性">
-            <label class="form-check-label" for="male">男性</label>
+            {{Form::radio('sex', 'male', false, ['class'=>'form-check-input', 'id'=>'male']) }}
+            {{ Form::label('male', '男性', ['class' => 'form-check-label']) }}
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="female" value="女性">
-            <label class="form-check-label" for="female">女性</label>
+            {{Form::radio('sex', 'female', false, ['class'=>'form-check-input', 'id'=>'female']) }}
+            {{ Form::label('female', '女性', ['class' => 'form-check-label']) }}
           </div>
         </div>
-        <div class="form-group col-sm-3">
-          <label>年齢</label>
-          <select class="custom-select custom-select-sm" name="age">
-            <option value="~19">~19</option>
-            <option value="20~29">20~29</option>
-            <option value="30~39">30~39</option>
-            <option value="40~49">40~49</option>
-            <option value="50~59">50~59</option>
-            <option value="60~">60~</option>
-          </select>
+        <div class="form-group col-sm-3 mb-4">
+          {{ Form::label('age', '年齢') }}
+          {{ Form::select('age', ['~19' => '~19', '20~29' => '20~29', '30~39' => '30~39', '40~49' => '40~49', '50~59' => '50~59', '60~' => '60~'], null, ['class' => 'custom-select custom-select-sm']) }}
         </div>
       </div>
-      <div class="form-group">
-        <label>備考</label>
-        <textarea class="form-control" name="note"></textarea>
+      <div class="form-group mb-4">
+        {{ Form::label('note', '備考') }}
+        {{ Form::textarea('note', null, ['class' => 'form-control']) }}
       </div>
-      <div class="form-inline border-top justify-content-around">
-        <button type="button" class="btn btn-primary" id="submit-btn">送信</button>
-        <button type="reset" class="btn btn-secondary" id="clear-btn">クリア</button>
-        <button type="button" class="btn btn-success" id="temp-btn">テンプレ</button>
-        <button type="button" class="btn btn-danger" id="disabled-btn">操作不能</button>
+      <div class="form-inline border-top w-75 mx-auto pt-4 justify-content-around">
+        {{ Form::button('送信', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) }}
+        {{ Form::button('クリア', ['type' => 'reset', 'class' => 'btn btn-secondary', 'id' => 'clear-btn']) }}
+        {{ Form::button('テンプレ', ['class' => 'btn btn-success', 'id' => 'temp-btn']) }}
+        {{ Form::button('操作不能', ['class' => 'btn btn-danger', 'id' => 'disabled-btn']) }}
       </div>
     {!! Form::close() !!}
     <ul id="testList" class="mt-5"></ul>
